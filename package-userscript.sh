@@ -17,7 +17,10 @@ fileArray=(
 )
 
 # Include additional files from ./plugins, excluding those starting with "-"
-fileArray+=($(find ./plugins -type f -name "*.js" ! -name "-*.js"))
+while IFS= read -r -d '' file; do
+    fileArray+=("$file")
+done < <(find ./plugins -type f -name "*.js" ! -name "-*.js" -print0)
+
 
 fileArray+=(
   "./js/plugins.js"
