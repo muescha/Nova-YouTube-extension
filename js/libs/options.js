@@ -88,8 +88,8 @@ const PopulateForm = {
                   if (options = subtargetEl?.selectedOptions) {
                      return Array.from(options).map(({ value }) => value);
                   }
-                  return [subtargetEl.value];
-                  // return [(subtargetEl.type == 'checkbox') ? subtargetEl.checked : subtargetEl.value];
+                  // return [subtargetEl.value];
+                  return [(subtargetEl.type == 'checkbox') ? subtargetEl.checked.toString() : subtargetEl.value];
                })();
 
                // if (parrentName == '')
@@ -97,7 +97,7 @@ const PopulateForm = {
 
                if (ruleValues.length // filter value present
                   && ( // element has value or checked
-                     (subtargetEl.checked && !subtargetEl.matches('[type="radio"]')) // skip radio (which is always checked. Unlike a checkbox)
+                     false //(subtargetEl.checked && !subtargetEl.matches('[type="radio"]')) // skip radio (which is always checked. Unlike a checkbox)
                      || ruleValues.some(i => currentValuesList.includes(i.toString())) // has value
                   )
                   // || (ruleValues.startsWith('!') && subtargetEl.value !== ruleValues.replace('!', '')) // inverse value
